@@ -1,4 +1,5 @@
 const Cart = require('../models/Cart.model');
+const Guest = require('../models/Guest.model');
 const Product = require('../models/Product.model');
 
 const getCart = async (userId, guestId) => {
@@ -82,7 +83,6 @@ exports.updateCart = async (req, res) => {
         const productIndex = cart.products.findIndex(
             (p) => p.productId.toString() === productId && p.size === size && p.color === color
         );
-
         if (productIndex > -1) {
             if (quantity > 0) {
                 cart.products[productIndex].quantity = quantity;
@@ -185,6 +185,7 @@ exports.mergeCart = async (req, res) => {
 
                 try {
                     await Cart.findOneAndDelete({ guestId });
+                    await Guest.findByIdAndDelete(guestId)
                 } catch (error) {
                     console.log('Error deleting guest cart:', error);
                 }

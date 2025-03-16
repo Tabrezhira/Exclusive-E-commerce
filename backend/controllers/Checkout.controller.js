@@ -1,33 +1,68 @@
 const Checkout = require('../models/Checkout.model');
 const Order = require('../models/Order.model');
 const Cart = require('../models/Cart.model');
+const Address = require('../models/Address.model')
 
 // @route   POST /api/checkout
 // @desc    Create a new checkout session
 // @access  Private
 exports.createCheckout = async (req, res) => {
-    const { checkoutItems, shippingAddress, paymentMethod, totalPrice } = req.body;
+    const { cartId, addressId, paymentMethod } = req.body;
 
-    if (!checkoutItems || checkoutItems.length === 0) {
-        return res.status(400).json({ message: "No items in checkout" });
+    if (!cartId || !addressId) {
+        return res.status(400).json({ message: "cartId and addressId are required" });
     }
 
     try {
+        // Fetch cart data
+        const cart = await Cart.findById(cartId);
+        if (!cart || cart.products.length === 0) {
+            return res.status(400).json({ message: "Cart is empty or not found" });
+        }
+
+        // Fetch address data
+        const address = await Address.findById(addressId);
+        if (!address) {
+            return res.status(400).json({ message: "Address not found" });
+        }
+
+        // Transform cart products to match checkout schema
+        const checkoutItems = cart.products.map(item => ({
+            productId: item.productId,
+            name: item.name,
+            image: item.image || "default-image.jpg", // Ensure image is provided
+            price: item.price,
+            quantity: item.quantity,
+            size: item.size,
+            color: item.color
+        }));
+
+        const shippingAddress = {
+            address:`${address.houseNo} ${address.street}`,
+            city: address.city,
+            postalCode: address.zipCode,
+            country: address.country,
+        }
+
+        // Create checkout
         const newCheckout = await Checkout.create({
             user: req.user._id,
             checkoutItems,
             shippingAddress,
             paymentMethod,
-            totalPrice,
+            totalPrice: cart.totalPrice,
             paymentStatus: "Pending",
             isFinalized: false,
         });
 
+        // Delete cart after successful checkout
+        await Cart.findByIdAndDelete(cartId);
+
         console.log(`Checkout created for user: ${req.user.id}`);
         res.status(201).json(newCheckout);
     } catch (error) {
-        console.error('Error creating checkout session:', error);
-        res.status(500).json({ message: 'Server Error' });
+        console.error("Error creating checkout session:", error);
+        res.status(500).json({ message: "Server Error" });
     }
 };
 
@@ -89,7 +124,7 @@ exports.finalizeCheckout = async (req, res) => {
             await checkout.save();
 
             // Delete the user's cart after finalizing the order
-            await Cart.findOneAndDelete({ user: checkout.user });
+            await Checkout.findByIdAndUpdate(req.params.id);
 
             res.status(201).json(finalOrder);
         } else if (checkout.isFinalized) {
