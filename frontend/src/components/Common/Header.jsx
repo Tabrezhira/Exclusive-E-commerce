@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 function Header() {
   return (
-    <header className=' border-b border-gray-200 bg-blue-500'>
+    <header className=' border-b border-gray-200   '>
         {/* Topbar */}
         <Topbar/>
         {/* navbar */}

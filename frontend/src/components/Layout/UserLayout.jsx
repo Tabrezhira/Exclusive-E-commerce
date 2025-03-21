@@ -9,11 +9,11 @@ function UserLayout() {
     {/* {Header} */}
     <Header/>
     {/* {Main content} */}
-    <main>
+    <main className=' min-h-screen'>
       <Outlet/>
     </main>
     {/* {Footer} */}
-    <Footer/>
+    <Footer />
     </>
   )
 }
