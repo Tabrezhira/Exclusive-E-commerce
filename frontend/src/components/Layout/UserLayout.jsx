@@ -1,19 +1,16 @@
 import React from 'react'
-import Footer from '../Common/Footer'
-import Header from '../Common/Header'
+import Header from '../Section/Header'
 import { Outlet } from 'react-router-dom'
+import Footer from '../Section/Footer'
 
 function UserLayout() {
   return (
     <>
-    {/* {Header} */}
-    <Header/>
-    {/* {Main content} */}
-    <main className=' min-h-screen'>
-      <Outlet/>
+  <Header/>
+    {/* <main>
+        <Outlet/>
     </main>
-    {/* {Footer} */}
-    <Footer />
+    <Footer/> */}
     </>
   )
 }
