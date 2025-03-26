@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 function Topbar() {
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const [selectedLang, setSelectedLang] = useState("English");
     const languages = ["English", "Hindi", "Gujarati", "French"];
   return (
-    <div className='bg-black text-white py-2'>
-        <div className=' container flex mx-auto justify-center items-center'>
+    <div className=' bg-black hidden md:block text-white py-2'>
+        <div className=' container flex mx-auto justify-center items-center px-4'>
             <div className=' flex-1 flex justify-center items-center'>
                 <p className='text-xs md:text-l'>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!{" "} <span>ShopNow</span></p>
             </div>
@@ -20,7 +20,7 @@ function Topbar() {
                         {languages.map((item,index) => (
                            <li key={index} onClick={() =>{
                             setSelectedLang(item)
-                            setIsOpen(false)
+                             setIsOpen(false)
                            }} className='px-4 text-sm py-2  hover:bg-gray-200 cursor-pointer'>{item}</li>
                         ))}
 
