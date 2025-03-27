@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IoSearch } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { FaRegUser } from "react-icons/fa";
+import { FiUser } from "react-icons/fi";
 import { MdMenu } from "react-icons/md";
 function Navbar() {
   const menu = ["Home","Contact","About","SignUp"]
@@ -35,8 +35,8 @@ function Navbar() {
                 <AiOutlineShoppingCart className='font-bold text-2xl' />
               </div>
             </div>
-            <div className='w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center'>
-              <FaRegUser className='font-bold text-xl' />
+            <div className='w-8 h-8 bg-red-400 rounded-full flex items-center justify-center'>
+              <FiUser className='font-bold text-xl text-white' />
             </div>
          </div>
 
@@ -76,10 +76,6 @@ function Navbar() {
       )}
          </div>
       </div>
-    </div>
-
-    <div className=''>
-      hello
     </div>
     </>
 
