@@ -3,29 +3,30 @@ import { FaStar } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 
-function ProductCard() {
+function ProductCard(product) {
+
   return (
-    <div className='w-40'>
-        <div className='relative w-full bg-indigo-400'>
-            <img className='relative' src="https://dummyimage.com/220x220/d4d4d4/fff"/>
-            <div className='absolute bg-red-300 top-0 z-10 flex  justify-between'>
-                <div>-40%</div>
-                <div className='flex flex-col w-full left-100 absolute bg-red-400 '>
-                    <button><FaRegHeart /></button>
-                    <button><FaRegEye /></button>
+    <div className=' shadow-md rounded-b-md '>
+        <div className='relative w-[220px] '>
+            <img className=' w-full h-auto rounded-t-md mb-1'  src="https://dummyimage.com/220x220/d4d4d4/fff"/>
+            <div className='absolute top-2  left-2 right-2 flex justify-between   text-white px-2 py-1 rounded-md'>
+            <span className="text-xs h-6 w-12 flex items-center justify-center rounded bg-red-500 font-semibold">-40%</span>
+                <div className='flex flex-col gap-2 '>
+                    <button className='w-8 h-8 rounded-full text-black flex items-center justify-center bg-white'><FaRegHeart /></button>
+                    <button className='w-8 h-8 rounded-full text-black flex items-center justify-center bg-white'><FaRegEye /></button>
                 </div>
             </div>
         </div>
-        <p>HAVIT HV-G92 Gamepad</p>
-        <div>
-            <p>$120</p>
-            <p>$160</p>
+        <p className='font-bold px-2 mb-1'>{product.product.name}</p>
+        <div className='flex gap-2 mb-1 px-2 items-center'>
+            <p className='text-red-500 text-md font-light'>{product.product.price}</p>
+            <p className='text-gray-500 line-through opacity-60 text-sm font-light'>{product.product.discountPrice}</p>
         </div>
-        <div>
-            <div>
-                <p><FaStar /></p>
-            </div>
-            <p>(88)</p>
+        <div className='flex gap-2 mb-2 px-2 items-center'>
+        {[...Array(product.product.star)].map((_, index) => (
+        <FaStar key={index} className="text-yellow-500" />
+      ))}
+            <p>({product.product.review})</p>
         </div>
     </div>
   )

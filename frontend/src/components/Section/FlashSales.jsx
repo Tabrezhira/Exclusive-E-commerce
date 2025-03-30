@@ -11,8 +11,8 @@ function FlashSales() {
             name: "Wireless Headphones",
             price: "₹2,999",
             discountPrice: "₹1,999",
-            star: "4.5",
-            review: "Excellent sound quality and battery life!"
+            star: 5,
+            review: "28"
         },
         {
             id: 2,
@@ -20,8 +20,8 @@ function FlashSales() {
             name: "Smartwatch Pro",
             price: "₹5,499",
             discountPrice: "₹4,299",
-            star: "4.2",
-            review: "Feature-packed and stylish!"
+            star: 4,
+            review: "99"
         },
         {
             id: 3,
@@ -29,8 +29,8 @@ function FlashSales() {
             name: "Gaming Mouse",
             price: "₹1,499",
             discountPrice: "₹999",
-            star: "4.7",
-            review: "Great for gaming and productivity."
+            star: 4,
+            review: "1"
         },
         {
             id: 4,
@@ -38,8 +38,8 @@ function FlashSales() {
             name: "Mechanical Keyboard",
             price: "₹3,999",
             discountPrice: "₹3,199",
-            star: "4.6",
-            review: "Perfect key response and RGB lighting."
+            star: 4,
+            review: "110"
         },
         {
             id: 5,
@@ -47,8 +47,8 @@ function FlashSales() {
             name: "Bluetooth Speaker",
             price: "₹2,799",
             discountPrice: "₹2,199",
-            star: "4.4",
-            review: "Superb sound quality with deep bass."
+            star: 4,
+            review: "999"
         },
         {
             id: 6,
@@ -56,7 +56,7 @@ function FlashSales() {
             name: "Power Bank 20,000mAh",
             price: "₹2,499",
             discountPrice: "₹1,899",
-            star: "4.3",
+            star: 3,
             review: "Fast charging and high capacity!"
         },
         {
@@ -65,8 +65,8 @@ function FlashSales() {
             name: "Wireless Earbuds",
             price: "₹3,299",
             discountPrice: "₹2,499",
-            star: "4.5",
-            review: "Comfortable fit and crystal-clear sound."
+            star: 5,
+            review: "55"
         },
         {
             id: 8,
@@ -74,8 +74,8 @@ function FlashSales() {
             name: "4K Action Camera",
             price: "₹8,999",
             discountPrice: "₹7,499",
-            star: "4.6",
-            review: "Stunning video quality and stabilization."
+            star: 4,
+            review: "48"
         },
         {
             id: 9,
@@ -83,8 +83,8 @@ function FlashSales() {
             name: "Portable Laptop Stand",
             price: "₹1,199",
             discountPrice: "₹899",
-            star: "4.2",
-            review: "Ergonomic design and easy to carry."
+            star: 4,
+            review: "77"
         },
         {
             id: 10,
@@ -92,13 +92,13 @@ function FlashSales() {
             name: "Noise Cancelling Headphones",
             price: "₹6,999",
             discountPrice: "₹5,499",
-            star: "4.7",
-            review: "Immersive audio with active noise cancellation."
+            star: 4,
+            review: "85"
         }
     ];
   return (
     <div className=' '>
-        <div className=' container mx-auto px-4 '>
+        <div className=' container mx-auto px-4 overflow-x-hidden '>
             <div className='my-2 flex gap-2  items-center'>
                 <div className='h-10 w-6 bg-red-500 rounded-md '></div>
                 <h1 className='text-red-500 font-bold text-lx'>Today's</h1>
@@ -146,10 +146,11 @@ function FlashSales() {
                     <button className='bg-gray-300 h-10 w-10 flex items-center justify-around rounded-full'><FaArrowRightLong /></button>
                 </div>
             </div>
-            <div>
-                <ProductCard>
-                    
-                </ProductCard>
+            <div className='flex my-6 gap-4'>
+                {products.map((product,index) => (
+                    <ProductCard key={index} product={product}/>
+                ))}
+                
             </div>
         </div>   
     </div>

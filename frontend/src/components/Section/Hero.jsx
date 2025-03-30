@@ -102,7 +102,7 @@ const scrollRef = useRef(null);
         </Carousel>
       </div>
     {/* Mobile */}
-    <div className="mt-4 lg:hidden">
+    <div className="my-4 lg:hidden">
       <Swiper slidesPerView={3} spaceBetween={20} modules={[Pagination]} className="mySwiper">
         {categories.map((item, index) => (
           <SwiperSlide
@@ -118,30 +118,7 @@ const scrollRef = useRef(null);
       </Swiper>
     </div>
 
-        <div>
-        <div className='  mt-4  lg:hidden'>
-              <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            // pagination={{
-            //   clickable: true,
-            // }}
-            modules={[Pagination]}
-            className="mySwiper"
-            
-          > 
-          <div className='bg-orange-500'>
-            {categories.map((item,index) => (
-              <SwiperSlide className='bg-amber-100 h-20 w-24'>{item.name}</SwiperSlide>
-            ))}
-            
-          </div>  
 
-            
-
-          </Swiper>
-          </div>
-        </div>
 
   </div>
 </div>
