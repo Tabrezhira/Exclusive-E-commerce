@@ -3,101 +3,27 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import ProductCard from '../comm/ProductCard';
 import Redbtn from '../comm/Redbtn' 
+import { FaMobileAlt, FaDesktop, FaRegClock, FaCamera, FaHeadphones, FaGamepad } from "react-icons/fa";
+// Icon Mapping
+const iconMap = {
+    FaMobileAlt: FaMobileAlt,
+    FaDesktop: FaDesktop,
+    FaRegClock: FaRegClock,
+    FaCamera: FaCamera,
+    FaHeadphones: FaHeadphones,
+    FaGamepad: FaGamepad,
+  };
+  
+  const category = [
+    { name: "Phones", icon: "FaMobileAlt" },
+    { name: "Computers", icon: "FaDesktop" },
+    { name: "SmartWatch", icon: "FaRegClock" },
+    { name: "Camera", icon: "FaCamera" },
+    { name: "HeadPhones", icon: "FaHeadphones" },
+    { name: "Gaming", icon: "FaGamepad" },
+  ];
 
-
-const products = [
-    {
-        id: 1,
-        img: "https://dummyimage.com/800x420/000/fff",
-        name: "Wireless Headphones",
-        price: "₹2,999",
-        discountPrice: "₹1,999",
-        star: 5,
-        review: "28"
-    },
-    {
-        id: 2,
-        img: "https://dummyimage.com/600x400/000/fff",
-        name: "Smartwatch Pro",
-        price: "₹5,499",
-        discountPrice: "₹4,299",
-        star: 4,
-        review: "99"
-    },
-    {
-        id: 3,
-        img: "https://dummyimage.com/700x400/000/fff",
-        name: "Gaming Mouse",
-        price: "₹1,499",
-        discountPrice: "₹999",
-        star: 4,
-        review: "1"
-    },
-    {
-        id: 4,
-        img: "https://dummyimage.com/750x420/000/fff",
-        name: "Mechanical Keyboard",
-        price: "₹3,999",
-        discountPrice: "₹3,199",
-        star: 4,
-        review: "110"
-    },
-    {
-        id: 5,
-        img: "https://dummyimage.com/680x420/000/fff",
-        name: "Bluetooth Speaker",
-        price: "₹2,799",
-        discountPrice: "₹2,199",
-        star: 4,
-        review: "999"
-    },
-    {
-        id: 6,
-        img: "https://dummyimage.com/720x420/000/fff",
-        name: "Power Bank 20,000mAh",
-        price: "₹2,499",
-        discountPrice: "₹1,899",
-        star: 3,
-        review: "1"
-    },
-    {
-        id: 7,
-        img: "https://dummyimage.com/760x420/000/fff",
-        name: "Wireless Earbuds",
-        price: "₹3,299",
-        discountPrice: "₹2,499",
-        star: 5,
-        review: "55"
-    },
-    {
-        id: 8,
-        img: "https://dummyimage.com/650x420/000/fff",
-        name: "4K Action Camera",
-        price: "₹8,999",
-        discountPrice: "₹7,499",
-        star: 4,
-        review: "48"
-    },
-    {
-        id: 9,
-        img: "https://dummyimage.com/780x420/000/fff",
-        name: "Portable Laptop Stand",
-        price: "₹1,199",
-        discountPrice: "₹899",
-        star: 4,
-        review: "77"
-    },
-    {
-        id: 10,
-        img: "https://dummyimage.com/800x450/000/fff",
-        name: "Noise Cancelling Headphones",
-        price: "₹6,999",
-        discountPrice: "₹5,499",
-        star: 4,
-        review: "85"
-    }
-];
-function FlashSales() {
+function Category() {
     const scrollRef = useRef(null)
     const scrollRef1 = useRef(null)
     const [isDragging, setIsDragging] = useState(false)
@@ -157,19 +83,18 @@ function FlashSales() {
     //     scrollRef1.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     // };
     
-
   return (
-    <div className='  '>
+    <div className=' '>
         <div className=' container mx-auto pb-6  border-b-2 border-gray-200 px-4 overflow-x-hidden '>
             <div className='my-2 flex gap-2  items-center'>
                 <div className='h-10 w-6 bg-red-500 rounded-md '></div>
-                <h1 className='text-red-500 font-bold text-lx'>Today's</h1>
+                <h1 className='text-red-500 font-bold text-lx'>Categories</h1>
             </div>
             <div className=' flex items-center justify-between'>
                 <div className='  md:flex justify-start items-end gap-10'>
-                    <h1 className='text-3xl font-bold'>Flash Sales</h1>
+                    <h1 className='text-3xl font-bold'>Browse By Category</h1>
                     <div className=' w-60 h-12'> 
-                        <div className='mt-2  md:mt-0 flex justify-between items-end'>
+                        {/* <div className='mt-2  md:mt-0 flex justify-between items-end'>
                         <div className='flex flex-col justify-center'>
                                 <p className='text-xs'>Days</p>
                                 <div className='flex gap-2 justify-between'>
@@ -200,7 +125,7 @@ function FlashSales() {
                                 <p className='text-2xl font-bold'>56</p>
                             </div>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className=' hidden  md:flex items-center gap-2'>
@@ -208,20 +133,22 @@ function FlashSales() {
                     <button onClick={() => scroll("right")} className='bg-gray-300 h-10 w-10 flex items-center justify-around rounded-full'><FaArrowRightLong /></button>
                 </div>
             </div>
-            <div ref={scrollRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUpOrLeave} onMouseLeave={handleMouseUpOrLeave} 
-            className='flex overflow-x-scroll  py-2 px-1 snap-x snap-mandatory  scrollbar-hide my-6 gap-4 relative'>
-                {products.map((product,index) => (
-                    <ProductCard key={index} product={product}/>
-                ))}
-                
+            <div ref={scrollRef} className="flex overflow-x-scroll py-2 px-1 snap-x snap-mandatory scrollbar-hide my-6 gap-4 relative">
+        {category.map((item, index) => {
+          const IconComponent = iconMap[item.icon]; // Get actual icon component
+
+          return (
+            <div key={index} className="flex hover:bg-red-400 flex-col items-center justify-center gap-2 min-h-40 min-w-40 border-2 border-gray-200">
+              {IconComponent && <IconComponent className="text-6xl text-black" />}
+              <h1 className="text-xl">{item.name}</h1>
+            </div>
+          );
+        })}               
             </div>
 
-            <div className='flex justify-center items-center' >
-                <Redbtn/>
-            </div>
         </div>   
-    </div>
+    </div> 
   )
 }
 
-export default FlashSales 
+export default Category
