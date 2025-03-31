@@ -97,7 +97,8 @@ const products = [
         review: "85"
     }
 ];
-function FlashSales() {
+
+function BestSelling() {
     const scrollRef = useRef(null)
     const scrollRef1 = useRef(null)
     const [isDragging, setIsDragging] = useState(false)
@@ -149,80 +150,35 @@ function FlashSales() {
             return() => container.removeEventListener('scroll', updateScrollButtons)
         }
     },[])
-
-    // const scroll = (direction) => {
-    //     if (!scrollRef.current) return;
-    //     const scrollAmount = direction === "left" ? -500 : 500;
-    //     scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    //     scrollRef1.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    // };
-    
-
   return (
-    <div className=' '>
-        <div className=' container mx-auto pb-6  border-b-2 border-gray-200 px-4 overflow-x-hidden '>
-            <div className='my-2 flex gap-2  items-center'>
-                <div className='h-10 w-6 bg-red-500 rounded-md '></div>
-                <h1 className='text-red-500 font-bold text-lx'>Today's</h1>
+    <div className='mt-4 '>
+    <div className=' container mx-auto pb-6  px-4 overflow-x-hidden '>
+        <div className='my-2 flex gap-2  items-center'>
+            <div className='h-10 w-6 bg-red-500 rounded-md '></div>
+            <h1 className='text-red-500 font-bold text-lx'>This Month</h1>
+        </div>
+        <div className=' flex items-center justify-between'>
+            <div className=' justify-center pt-4 w-full items-center  md:flex md:justify-start md:items-end gap-10'>
+                <h1 className='text-3xl text-center  font-bold'>Best Selling Products</h1>
             </div>
-            <div className=' flex items-center justify-between'>
-                <div className=' justify-center w-full items-center  md:flex md:justify-start md:items-end gap-10'>
-                    <h1 className='text-3xl text-center  font-bold'>Flash Sales</h1>
-                    <div className=' md:w-60  flex md:block mt-2 md:mt-0 justify-center w-full h-12'> 
-                        <div className='mt-2  md:mt-0 text-center md:text-left flex gap-3 md:gap-0 justify-between items-end'>
-                        <div className='flex flex-col justify-center'>
-                                <p className='text-xs'>Days</p>
-                                <div className='flex gap-2 justify-between'>
-                                <p className='text-2xl font-bold'>03</p>
-                                <span className='text-red-500 hidden md:block text-2xl'>:</span>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col justify-center'>
-                                <p className='text-xs'>Hours</p>
-                                <div className='flex gap-2 justify-between'>
-                                <p className='text-2xl font-bold'>23</p>
-                                <span className='text-red-500 hidden md:block text-2xl'>:</span>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col justify-center'>
-                                <p className='text-xs hidden md:block'>Minutes</p>
-                                <p className='text-xs md:hidden'>Mins</p>
-                                <div className='flex gap-2 justify-between'>
-                                <p className='text-2xl font-bold'>19</p>
-                                <span className='text-red-500 hidden md:block text-2xl'>:</span>
-                                </div>
-
-                            </div>
-
-                            <div className='flex flex-col justify-center'>
-                                <p className='text-xs'>Seconds</p>
-                                <p className='text-2xl font-bold'>56</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div className=' hidden  md:flex items-center gap-2'>
-                    <button onClick={() => scroll('left') } disabled={!canScrollLeft}  className='bg-gray-300 h-10 w-10 flex items-center justify-around rounded-full'><FaArrowLeftLong /></button>
-                    <button onClick={() => scroll("right")} className='bg-gray-300 h-10 w-10 flex items-center justify-around rounded-full'><FaArrowRightLong /></button>
-                </div>
+            <div className=' hidden md:flex items-center w-40'>
+                <Redbtn title={"View All"}/>
             </div>
-            <div ref={scrollRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUpOrLeave} onMouseLeave={handleMouseUpOrLeave} 
-            className='flex overflow-x-scroll  py-2 px-1 snap-x snap-mandatory  scrollbar-hide my-6 gap-4 relative'>
-                {products.map((product,index) => (
-                    <ProductCard key={index} product={product}/>
-                ))}
-                
-            </div>
+        </div>
+        <div  ref={scrollRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUpOrLeave} onMouseLeave={handleMouseUpOrLeave}
+        className='flex overflow-x-scroll  py-2 px-1 snap-x snap-mandatory  md:justify-center scrollbar-hide my-6 gap-4 md:gap-9 relative'>
+            {products.slice(0, 4).map((product, index) => (
+                <ProductCard key={index} product={product} />
+            ))}
+        </div>
 
-            <div className='flex justify-center items-center' >
+        <div className='flex md:hidden justify-center items-center' >
                 <Redbtn/>
-            </div>
-        </div>   
-    </div>
+        </div>
+
+    </div>   
+</div>
   )
 }
 
-export default FlashSales 
+export default BestSelling

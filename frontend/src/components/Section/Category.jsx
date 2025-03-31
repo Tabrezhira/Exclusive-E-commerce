@@ -85,55 +85,21 @@ function Category() {
     
   return (
     <div className=' '>
-        <div className=' container mx-auto pb-6  border-b-2 border-gray-200 px-4 overflow-x-hidden '>
-            <div className='my-2 flex gap-2  items-center'>
+        <div className=' container mx-auto pb-2 md:py-8 border-b-2 border-gray-200 px-4 overflow-x-hidden '>
+            <div className='my-4 flex gap-2  items-center'>
                 <div className='h-10 w-6 bg-red-500 rounded-md '></div>
                 <h1 className='text-red-500 font-bold text-lx'>Categories</h1>
             </div>
             <div className=' flex items-center justify-between'>
-                <div className='  md:flex justify-start items-end gap-10'>
+                <div className='  text-center min-w-full md:min-w-0 md:flex  md:justify-start items-end gap-10'>
                     <h1 className='text-3xl font-bold'>Browse By Category</h1>
-                    <div className=' w-60 h-12'> 
-                        {/* <div className='mt-2  md:mt-0 flex justify-between items-end'>
-                        <div className='flex flex-col justify-center'>
-                                <p className='text-xs'>Days</p>
-                                <div className='flex gap-2 justify-between'>
-                                <p className='text-2xl font-bold'>03</p>
-                                <span className='text-red-500 text-2xl'>:</span>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col justify-center'>
-                                <p className='text-xs'>Hours</p>
-                                <div className='flex gap-2 justify-between'>
-                                <p className='text-2xl font-bold'>23</p>
-                                <span className='text-red-500 text-2xl'>:</span>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col justify-center'>
-                                <p className='text-xs'>Minutes</p>
-                                <div className='flex gap-2 justify-between'>
-                                <p className='text-2xl font-bold'>19</p>
-                                <span className='text-red-500 text-2xl'>:</span>
-                                </div>
-
-                            </div>
-
-                            <div className='flex flex-col justify-center'>
-                                <p className='text-xs'>Seconds</p>
-                                <p className='text-2xl font-bold'>56</p>
-                            </div>
-
-                        </div> */}
-                    </div>
                 </div>
                 <div className=' hidden  md:flex items-center gap-2'>
                     <button onClick={() => scroll('left') } disabled={!canScrollLeft}  className='bg-gray-300 h-10 w-10 flex items-center justify-around rounded-full'><FaArrowLeftLong /></button>
                     <button onClick={() => scroll("right")} className='bg-gray-300 h-10 w-10 flex items-center justify-around rounded-full'><FaArrowRightLong /></button>
                 </div>
             </div>
-            <div ref={scrollRef} className="flex overflow-x-scroll py-2 px-1 snap-x snap-mandatory scrollbar-hide my-6 gap-4 relative">
+            <div ref={scrollRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUpOrLeave} onMouseLeave={handleMouseUpOrLeave}className="flex overflow-x-scroll py-0 md:py-2 px-1 snap-x snap-mandatory scrollbar-hide my-6 gap-4 relative">
         {category.map((item, index) => {
           const IconComponent = iconMap[item.icon]; // Get actual icon component
 

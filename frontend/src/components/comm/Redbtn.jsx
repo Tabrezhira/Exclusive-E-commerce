@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Redbtn() {
+function Redbtn({title}) {
   return (
     <button className='bg-red-400 py-2 px-4 rounded text-white' >
-      View All Products
+      {title ? title : "View All Products"}
     </button>
   )
 }
