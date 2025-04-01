@@ -6,6 +6,7 @@ import BestSelling from '../components/Section/BestSelling'
 import Music from '../components/Section/Music'
 import ExplorePoducts from '../components/Section/ExplorePoducts'
 import NewArrival from '../components/Section/NewArrival'
+import Features from '../components/Section/features'
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
    <Music/>
    <ExplorePoducts/>
    <NewArrival/>
+   <Features/>
    </>
   )
 }
