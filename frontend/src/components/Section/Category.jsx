@@ -99,7 +99,7 @@ function Category() {
                     <button onClick={() => scroll("right")} className='bg-gray-300 h-10 w-10 flex items-center justify-around rounded-full'><FaArrowRightLong /></button>
                 </div>
             </div>
-            <div ref={scrollRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUpOrLeave} onMouseLeave={handleMouseUpOrLeave}className="flex overflow-x-scroll py-0 md:py-2 px-1 snap-x snap-mandatory scrollbar-hide my-6 gap-4 relative">
+            <div ref={scrollRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUpOrLeave} onMouseLeave={handleMouseUpOrLeave}className="flex overflow-x-scroll item-center justify-center  py-0 md:py-2 px-1 snap-x snap-mandatory scrollbar-hide my-6 gap-4 relative">
         {category.map((item, index) => {
           const IconComponent = iconMap[item.icon]; // Get actual icon component
 

@@ -93,10 +93,10 @@ const scrollRef = useRef(null);
     </div>
 
     {/* Carousel */}
-      <div className='flex-1 mt-2 lg:pl-4 lg:pt-7 lg:h-[25rem] overflow-hidden'>
+      <div className='flex-1  mt-2 lg:pl-4 lg:pt-7 lg:h-[25rem] overflow-hidden'>
         <Carousel autoSlide={true} autoSlideInterval={5000}>
           {slides.map((item) => (
-            <img src={item}/>
+            <img  className='min-w-full h-auto object-contain'  src={item}/>
           ))}
 
         </Carousel>
