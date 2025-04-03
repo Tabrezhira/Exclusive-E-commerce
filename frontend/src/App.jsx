@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Singup from './pages/Singup'; 
 import AuthLayout from './components/Layout/AuthLayout';
+import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home />} />
+          <Route path='wishlist' element={<Wishlist />} />
+          <Route path='Cart' element={<Cart />} />
+          <Route path='checkout' element={<Checkout />} />
         </Route>
 
         {/* Auth Routes */}
