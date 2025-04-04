@@ -52,12 +52,12 @@ function Cart() {
                     <button className=' border-2 border-gray-300 py-2 px-6'> Update Cart </button>
                  </div>
                  <div>
-                    <div className=' flex   justify-between'>
+                    <div className=' flex flex-col md:flex-row gap-2 md:gap-0 justify-between'>
                         <div className=' gap-4 flex  h-12 justify-start'>
                             <input className=' border-2 py-2 px-6 border-black' type="text" placeholder='Coupon Code'/>
-                            <button className='bg-red-400 py-2 border-2 border-red-400 text-white px-6'>Apply Coupon</button>
+                            <button className='bg-red-400 py-2 border-2 border-red-400 text-white lg:px-6'>Apply Coupon</button>
                         </div>
-                        <div className=' p-4 border-2 flex flex-col items-start w-1/2  justify-start'>
+                        <div className=' w-full  p-4 border-2 flex flex-col items-start md:w-1/2  justify-start'>
                             <p className='pt-2 pb-4'>Cart Total</p>
                             <div className='w-full flex flex-col justify-evenly  gap-5'>
                                 <div className='flex py-2 justify-between border-b-2 border-gray-300 '>
