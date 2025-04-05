@@ -8,6 +8,9 @@ import AuthLayout from './components/Layout/AuthLayout';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import Dashboard from './components/Layout/Dashboard';
+import MyProfile from './components/Section/MyProfile';
+import About from './pages/About';
 
 function App() {
   return (
@@ -19,14 +22,22 @@ function App() {
           <Route path='wishlist' element={<Wishlist />} />
           <Route path='Cart' element={<Cart />} />
           <Route path='checkout' element={<Checkout />} />
+          <Route path='about' element={<About />} />
         </Route>
+
 
         {/* Auth Routes */}
         <Route path="/auth" element={<AuthLayout />}>
           <Route index element={<Login />} />
           <Route path="signup" element={<Singup />} /> 
         </Route>
-      </Routes>
+
+
+        {/* Auth Routes */}
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route index element={<MyProfile/>} />
+          </Route>
+        </Routes>
     </BrowserRouter>
   );
 }
