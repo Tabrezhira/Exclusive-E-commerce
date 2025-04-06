@@ -11,6 +11,8 @@ import Checkout from './pages/Checkout';
 import Dashboard from './components/Layout/Dashboard';
 import MyProfile from './components/Section/MyProfile';
 import About from './pages/About';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path='Cart' element={<Cart />} />
           <Route path='checkout' element={<Checkout />} />
           <Route path='about' element={<About />} />
+          <Route path='Contact' element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
 
@@ -30,12 +34,14 @@ function App() {
         <Route path="/auth" element={<AuthLayout />}>
           <Route index element={<Login />} />
           <Route path="signup" element={<Singup />} /> 
+          <Route path="*" element={<NotFound />} />
         </Route>
 
 
         {/* Auth Routes */}
           <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<MyProfile/>} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
     </BrowserRouter>
