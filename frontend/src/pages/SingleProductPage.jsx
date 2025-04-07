@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaMinus, FaPlus, FaTruck, FaUndo } from 'react-icons/fa';
-
+import { CiDeliveryTruck } from "react-icons/ci";
+import { IoIosGitCompare } from "react-icons/io";
 function SingleProductPage() {
     const [quantity, setQuantity] = useState(2);
     const [selectedColor, setSelectedColor] = useState('red');
@@ -17,7 +18,7 @@ function SingleProductPage() {
         <div>
             <p className=''>Account / Gaming / Havic HV G-92 Gamepad</p>
         </div>
-        <div className='flex'>
+        <div className='flex py-4 h-180 '>
             <div className='bg-amber-200 flex-1' >
             a
             </div>
@@ -44,27 +45,28 @@ function SingleProductPage() {
                     <div className='h-9 flex items-center justify-center w-9 border-2 '>L</div>
                     <div className='h-9 flex items-center justify-center w-9 border-2 '>xL</div>
                 </div>
-                <div className='flex items-center py-4  gap-2'>
-                    <div className='flex '>
-                    <div className='h-6 w-6 text-2xl flex items-center justify-center border-2 '>-</div>
+                <div className='flex items-center  py-4  gap-2'>
+                    <div className='flex items-center gap-4 border-2 '>
+                    <div className='h-8 w-8 text-2xl flex items-center justify-center border-r-2 '>-</div>
                     <p>2</p>
-                    <div className='h-6 w-6 text-2xl flex items-center justify-center border-2 '>+</div>
+                    <div className='h-8 w-8 text-2xl flex items-center justify-center border-l-2 '>+</div>
                     </div>
+                    <button className='bg-red-400 py-2 text-white px-6'>Buy Now</button>
+                    <div className='h-8 w-8 border-2 text-xl flex items-center justify-center'>♡</div>
                 </div>
-                <button>Buy Now</button>
-                <div>♡</div>
-                <div>
-                    <div></div>
-                    <div>
+
+                <div className='flex border-2 items-center justify-around py-4 mb-4'>
+                    <div className='text-4xl'><CiDeliveryTruck /></div>
+                    <div className=''>
                         <p>Free Delivery</p>
-                        <p>Enter your postal code for Delivery Availability</p>
+                        <p className='text-xs'>Enter your postal code for Delivery Availability</p>
                     </div>
                 </div>
-                <div>
-                    <div></div>
+                <div className='flex border-2 items-center justify-around py-4'>
+                    <div className='text-4xl'><IoIosGitCompare /></div>
                     <div>
                         <p>Return Delivery</p>
-                        <p>Free 30 Days Delivery Returns. Details</p>
+                        <p className='text-xs'>Free 30 Days Delivery Returns. Details</p>
                     </div>
                 </div>
             </div>
