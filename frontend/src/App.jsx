@@ -13,7 +13,7 @@ import MyProfile from './components/Section/MyProfile';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
-
+import SingleProductPage from './pages/SingleProductPage';
 function App() {
   return (
     <BrowserRouter>
@@ -26,7 +26,9 @@ function App() {
           <Route path='checkout' element={<Checkout />} />
           <Route path='about' element={<About />} />
           <Route path='Contact' element={<Contact />} />
+          <Route path="SingleProduct" element={<SingleProductPage/>} />
           <Route path="*" element={<NotFound />} />
+
         </Route>
 
 
