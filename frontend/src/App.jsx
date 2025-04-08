@@ -14,6 +14,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import SingleProductPage from './pages/SingleProductPage';
+import MultiProducts from './pages/MultiProducts';
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +29,7 @@ function App() {
           <Route path='Contact' element={<Contact />} />
           <Route path="SingleProduct" element={<SingleProductPage/>} />
           <Route path="*" element={<NotFound />} />
-
+          <Route path="MultiProduct" element={<MultiProducts />} />
         </Route>
 
 
