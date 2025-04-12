@@ -22,7 +22,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, mobile, role } = req.body;
 
     // Validate required fields
-    if (!name || !email || !password || !mobile) {
+    if (!name || !email || !password ) {
         res.status(400);
         throw new Error("All fields (name, email, password, mobile) are required.");
     }

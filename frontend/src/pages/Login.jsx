@@ -1,8 +1,40 @@
+import { useState } from "react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 function Login() {
+    const [formData, setFormData] = useState({
+        Email:"",
+        Password:""
+    })
+    const navigate = useNavigate()
+    const submitForm = async (e) => {
+        
+        e.preventDefault();
+
+        const { Password, Email } = formData;
+    
+        if (!Email || !Password) {
+          alert("Please fill in all fields.");
+          return;
+        }
+    
+        try {
+            
+          const res = await axios.post('http://localhost:9000/api/users/login', {
+            email: Email,
+            password: Password,
+          });
+          console.log('Registration success:', res.data);
+          alert("Account created successfully!");
+          navigate("/")
+        } catch (err) {
+            console.log(err)
+          console.error('Registration failed:', err.response?.data || err.message);
+          alert(err.response?.data?.message || "Something went wrong!");
+        }
+      }
   return (
     <div className="flex items-center justify-center  bg-white">
         <div className="flex flex-col lg:flex-row shadow-lg overflow-hidden max-w-7xl w-full h-auto">
@@ -19,16 +51,16 @@ function Login() {
                 <div className="space-y-6">
                     <div className="flex items-center border-b-2 py-3 focus-within:border-black">
                         <FaEnvelope className="text-gray-400" size={22} />
-                        <input type="email" placeholder="Email or Phone Number" className="w-full ml-3 outline-none py-2 text-lg" />
+                        <input onChange={(e) => setFormData({ ...formData, Email: e.target.value })} type="email" placeholder="Email or Phone Number" className="w-full ml-3 outline-none py-2 text-lg" />
                     </div>
                     <div className="flex items-center border-b-2 py-3 focus-within:border-black">
                         <FaLock className="text-gray-400" size={22} />
-                        <input type="password" placeholder="Password" className="w-full ml-3 outline-none py-2 text-lg" />
+                        <input onChange={(e) => setFormData({ ...formData, Password: e.target.value })} type="password" placeholder="Password" className="w-full ml-3 outline-none py-2 text-lg" />
                     </div>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4 sm:gap-0">
-                    <button className="w-full sm:w-auto bg-red-500 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-lg sm:text-xl hover:bg-red-600">Log In</button>
+                    <button onClick={submitForm} className="w-full sm:w-auto bg-red-500 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-lg sm:text-xl hover:bg-red-600">Log In</button>
                     <a href="#" className="text-red-500 text-lg hover:underline">Forget Password?</a>
                 </div>
                 
