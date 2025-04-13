@@ -1,26 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FiFilter } from "react-icons/fi";
+import axios from 'axios'
 
-const products = Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    name: `Premium Product ${i + 1}`,
-    price: (99.99 + i * 10).toFixed(2),
-    image: `https://dummyimage.com/400x400/ddd/000&text=Product+${i + 1}`,
-  rating: (3 + (i % 3)).toFixed(1),
-  brand: "Urban Nomad",
-  category: i % 2 === 0 ? "Backpacks" : "Accessories",
-}));
+// const products = Array.from({ length: 20 }, (_, i) => ({
+//     id: i + 1,
+//     name: `Premium Product ${i + 1}`,
+//     price: (99.99 + i * 10).toFixed(2),
+//     image: `https://dummyimage.com/400x400/ddd/000&text=Product+${i + 1}`,
+//   rating: (3 + (i % 3)).toFixed(1),
+//   brand: "Urban Nomad",
+//   category: i % 2 === 0 ? "Backpacks" : "Accessories",
+// }));
 
 const MultiProducts = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:9000/api/product/");
+        setProducts(res.data); // store API products in state
+        console.log(res.data);
+      } catch (err) {
+        console.error("Registration failed:", err.response?.data || err.message);
+        alert(err.response?.data?.message || "Something went wrong!");
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const filteredProducts =
     selectedCategory === "All"
       ? products
-      : products.filter((p) => p.category === selectedCategory);
-
+      : products.filter((p) =>
+          Array.isArray(p.category) ? p.category.includes(selectedCategory) : p.category === selectedCategory
+        );
   return (
     <div className="min-h-screen relative p-4 md:p-6 lg:p-10 flex flex-col lg:flex-row gap-6">
       {/* Mobile Filter Button */}
