@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import { FaHeart, FaEye, FaTrash, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useLocation } from 'react-router-dom';
 const product = {
   title: "Premium Leather Backpack",
   brand: "Urban Nomad",
@@ -57,7 +58,17 @@ function SingleProductPage() {
           ref.current.scrollBy({ left: direction * 300, behavior: "smooth" });
         }
       };
-  
+
+      const location = useLocation(); // ✅ call it here
+      const receivedData = location.state;
+    
+      useEffect(() => {
+        console.log('Received data:', receivedData);
+        // Do something with receivedData
+      }, [receivedData]);
+
+
+
     return (
       <div className="min-h-screen bg-white py-10 px-4 sm:px-6 lg:px-20">
       {/* Breadcrumb */}

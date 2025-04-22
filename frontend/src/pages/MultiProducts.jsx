@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FiFilter } from "react-icons/fi";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 // const products = Array.from({ length: 20 }, (_, i) => ({
 //     id: i + 1,
@@ -17,6 +18,8 @@ const MultiProducts = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +42,11 @@ const MultiProducts = () => {
       : products.filter((p) =>
           Array.isArray(p.category) ? p.category.includes(selectedCategory) : p.category === selectedCategory
         );
+
+  const clickHandle = (e) => {
+          // Navigate and pass state
+          navigate('/SingleProduct', { state: e });
+  };
   return (
     <div className="min-h-screen relative p-4 md:p-6 lg:p-10 flex flex-col lg:flex-row gap-6">
       {/* Mobile Filter Button */}
@@ -84,17 +92,20 @@ const MultiProducts = () => {
         </div>
       )}
 
+
+
       {/* Products Grid */}
       <main className="flex-1">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">All Products</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
             <div
+              onClick={()=>{clickHandle(product)}}
               key={product.id}
               className="bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 relative group overflow-hidden"
             >
               <img
-                src={product.image}
+                src={product.images}
                 alt={product.name}
                 className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -110,7 +121,7 @@ const MultiProducts = () => {
                 <div className="text-xl font-bold text-blue-600">
                   ${product.price}
                 </div>
-                <button className="w-full mt-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg transition">
+                <button  className="w-full mt-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg transition">
                   🛒 Add to Cart
                 </button>
               </div>

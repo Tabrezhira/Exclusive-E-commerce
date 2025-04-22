@@ -16,6 +16,7 @@ import NotFound from './pages/NotFound';
 import SingleProductPage from './pages/SingleProductPage';
 import MultiProducts from './pages/MultiProducts';
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
