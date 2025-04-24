@@ -35,7 +35,7 @@ const product = {
     "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+2",
     "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+3",
     "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+4",
-    "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+8",
+    
   ],
 };
 
@@ -67,6 +67,8 @@ function SingleProductPage() {
         console.log('Received data:', receivedData);
         // Do something with receivedData
       }, [receivedData]);
+
+
 
 
 
@@ -270,7 +272,7 @@ function SingleProductPage() {
                           <FaEye className="text-gray-600" />
                         </button>
                             <div className="mt-4 lg:hidden">
-                            <button className="w-full bg-black text-white py-2 rounded text-sm font-semibold hover:bg-black transition">
+                            <button  className="w-full bg-black text-white py-2 rounded text-sm font-semibold hover:bg-black transition">
                             Add To Cart
                             </button>
                             </div>

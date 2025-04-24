@@ -26,7 +26,6 @@ const MultiProducts = () => {
       try {
         const res = await axios.get("http://localhost:9000/api/product/");
         setProducts(res.data); // store API products in state
-        console.log(res.data);
       } catch (err) {
         console.error("Registration failed:", err.response?.data || err.message);
         alert(err.response?.data?.message || "Something went wrong!");
@@ -47,6 +46,29 @@ const MultiProducts = () => {
           // Navigate and pass state
           navigate('/SingleProduct', { state: e });
   };
+
+  const addToCart = (e) => {
+    const data = {
+      "productId":e._id,
+      "quantity":"1",
+      "size":e.sizes[0],
+      "color":e.colors[0],
+      "guestId":"67d61827bea07fca7ad19076"
+    }
+    const fetchData = async () => {
+      try {
+        const res = await axios.post("http://localhost:9000/api/cart",data);
+        console.log(res) // store API products in state
+      } catch (err) {
+        console.error("Registration failed:", err.response?.data || err.message);
+        alert(err.response?.data?.message || "Something went wrong!");
+      }
+    };
+
+    fetchData();
+    console.log(data)
+    console.log(e)
+  }
   return (
     <div className="min-h-screen relative p-4 md:p-6 lg:p-10 flex flex-col lg:flex-row gap-6">
       {/* Mobile Filter Button */}
@@ -100,7 +122,7 @@ const MultiProducts = () => {
         <div  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
             <div
-              onClick={()=>{clickHandle(product)}}
+              
               key={product.id}
               className="bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 relative group overflow-hidden"
             >
@@ -109,7 +131,7 @@ const MultiProducts = () => {
                 alt={product.name}
                 className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="p-4 space-y-2">
+              <div onClick={()=>{clickHandle(product)}} className="p-4 space-y-2">
                 <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition">
                   {product.name}
                 </h3>
@@ -121,7 +143,10 @@ const MultiProducts = () => {
                 <div className="text-xl font-bold text-blue-600">
                   ${product.price}
                 </div>
-                <button  className="w-full mt-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg transition">
+                <button            onClick={(e) => {
+            e.stopPropagation(); // Prevents the parent onClick
+            addToCart(product);
+          }}  className="w-full mt-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg transition">
                   🛒 Add to Cart
                 </button>
               </div>
