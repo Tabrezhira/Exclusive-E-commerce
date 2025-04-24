@@ -35,6 +35,7 @@ const product = {
     "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+2",
     "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+3",
     "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+4",
+    "https://dummyimage.com/700x700/cccccc/000000&text=Product+Image+8",
   ],
 };
 
